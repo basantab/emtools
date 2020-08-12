@@ -10,6 +10,7 @@ The easiest way to manage the libraries needed to run the transform_particles.py
 2) Clone this repository:
 
 <code>git clone https://github.com/basantab/emtools.git</code>
+
 <code>cd emtools</code>
 
 3) Create <code>py37</code> using the provided .yml file:
@@ -19,12 +20,15 @@ The easiest way to manage the libraries needed to run the transform_particles.py
 4) Before running <code>transform\_particles.py</code>, activate the py37 environment using <code>conda activate py37</code>.
 
 5) Run <code>transform\_particles.py</code>, like in this example:
+
 <code>python transform\_particles.py --starfile your\_star\_file.star --transformation\_mtx [[0.98364538,-0.15451987,0.09254928,4.25534352],[0.15692689,0.48301307,-0.86143620,-5.85090884],[0.08840650,0.86187121,0.49936190,12.25449899]] --angpix 1.15</code>
 
 In this example, all particles in your\_star\_file.star are transformed using the following transformation matrix:
 
 <code>[[0.98364538,-0.15451987,0.09254928,4.25534352],</code>
+
 <code>[0.15692689,0.48301307,-0.86143620,-5.85090884],</code>
+
 <code>[0.08840650,0.86187121,0.49936190,12.25449899]]</code>
 
 In this matrix, the fourth column is the translation in X, Y and Z, and it's in Angstroms. A matrix like this can me obtained from aligning two densities in UCSF Chimera (keep in mind manual manipulations will not be reflected in the output matrix). Also, note that the transformation is not done on the raw micrographs, rather, the star file must be populated with assigned particle Euler angles and rotation origin shifts.
