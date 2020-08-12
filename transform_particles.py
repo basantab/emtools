@@ -1,4 +1,3 @@
-#!/nfs/home/bbasanta/anaconda2/envs/py37/bin/python
 
 import numpy as np
 import pandas as pd
@@ -62,6 +61,10 @@ def write_star(fname,opt_df,par_df,is_rln_31):
     fout.close()
 
 def reangle(mtx,new_rot):
+    '''
+    Combine Euler angle rows stored in mtx with a new_rot rotation 3x3 matrix into a single rotation, \
+    and output the corresponding Euler angles in the 'ZYZ' convention followed by RELION.
+    '''
     out = []
     for i in range(np.shape(mtx)[0]):
         part_mtx = R.from_euler('ZYZ',mtx[i],degrees=True).as_matrix()
@@ -72,6 +75,12 @@ def reangle(mtx,new_rot):
     return np.array(out)
 
 def retro_angle(mtx,trans_v,new_rot):
+    '''
+    Combine Euler angle and X and Y rotation origins in rows stored in mtx with a new_rot rotation 3x3 matrix into a single rotation, \
+    apply that single rotation in reverse to a trans_v translation vector, and output the combined rotation corresponding Euler angles in the 'ZYZ' \
+    convention followed by RELION, as well as X and Y origin of rotations shifted by the X' and Y' components of the back-rotated trans_v. \
+    This last origin shift moves each particle origin of rotation such that the final reconstruction is shifted by trans_v in 3D.
+    '''
     out = []
     for i in range(np.shape(mtx)[0]):
         part_mtx = R.from_euler('ZYZ',mtx[i][:3],degrees=True).as_matrix()
@@ -102,7 +111,6 @@ if __name__ == "__main__":
         if not args.angpix:
             sys.exit('Origin is required to be in pixels, but particle pixel size was not provided. Exiting without producing new star file.')
 
-    # Example matrix input: [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
     mtx_from_chimera = np.array(json.loads(args.transformation_mtx))
     print('Translations:')
     print(mtx_from_chimera[:,3])
