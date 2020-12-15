@@ -5,7 +5,7 @@
 
 The easiest way to manage the libraries needed to run the transform_particles.py  script is to install <a href="https://www.anaconda.com/products/individual">Anaconda</a>, and use it to generate the <code>py37</code> environment, with a version scipy that has the Rotation object.
 
-1) Install Anaconda following the instruction in their website.
+1) Install Anaconda following the instructions in their website.
 
 2) Clone this repository:
 
@@ -31,7 +31,7 @@ In this example, all particles in your\_star\_file.star are transformed using th
 
 <code>[0.08840650,0.86187121,0.49936190,12.25449899]]</code>
 
-In this matrix, the fourth column is the translation in X, Y and Z, and it's in Angstroms. A matrix like this can be obtained from aligning two densities in UCSF Chimera (keep in mind manual manipulations will not be reflected in the output matrix) using the fitmap command. If using UCSF Chimera, make sure you set the Origin index (Volume viewer \> Features \> Coordinates) of your densities to "center", that way the transformation matrix will reflect the desired transformation. Also, note that the transformation is not done on the raw micrographs, the star file must be populated with assigned particle Euler angles and rotation origin shifts.
+In this matrix, the fourth column is the translation in X, Y and Z, and it's in Angstroms. A matrix like this can be obtained from aligning two densities in UCSF Chimera (keep in mind manual manipulations will not be reflected in the output matrix) using the fitmap command. If using UCSF Chimera, make sure you set the Origin index (Volume viewer \> Features \> Coordinates) of your densities to "center", that way the transformation matrix will reflect the desired transformation. Also, note that the transformation is not done on the raw micrographs, the input star file must be pre-populated with assigned particle Euler angles and rotation origin shifts.
 
 Running <code>python transform\_particles.py --help</code> will produce the following message:
 
